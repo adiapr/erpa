@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +21,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('admin',function(){
-    return view('admin');
+    return view('administrator.datatables');
 })->middleware('checkRole:adminstrator');
 
 Route::get('penjual',function(){
     return view('penjual');
 })->middleware('checkRole:adminstrator,asosiasi');
 
+Route::get('/user',             [UserController::class, 'index'])       ->middleware('checkRole:adminstrator');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
