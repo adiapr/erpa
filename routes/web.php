@@ -29,4 +29,7 @@ Route::get('penjual',function(){
 })->middleware('checkRole:adminstrator,asosiasi');
 
 Route::get('/user',             [UserController::class, 'index'])       ->middleware('checkRole:adminstrator');
+Route::post('user/add',         [UserController::class, 'add'])         ->middleware('checkRole:adminstrator')->name('user.add');
+Route::post('user/delete/{id}', [UserController::class, 'delete'])     ->middleware('checkRole:adminstrator')->name('user.delete');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
