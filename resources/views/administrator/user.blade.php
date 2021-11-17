@@ -9,6 +9,8 @@
 @endsection
 
 @section('content')
+
+@include('sweetalert::alert')
 <div class="row">
     <div class="col-md-12">
         <div class="card">
@@ -16,7 +18,7 @@
                 <h4 class="card-title pull-left">List data user</h4>
                 <button class="btn btn-warning btn-sm pull-right" data-toggle="modal"  data-target="#importExcel"><i class="fa fa-download"></i>&nbsp;  Download</button>
                 <button class="btn btn-success btn-sm pull-right mr-2" data-toggle="modal"  data-target="#importExcel"><i class="fa fa-file-excel"></i>&nbsp;  Import Excel</button>
-                
+
                 {{-- tambah data  --}}
                 <a href="" data-toggle="modal"  data-target="#modalTambah" class="btn btn-primary btn-sm pull-right  mr-2"><i class="fa fa-plus"></i> Tambah Data</a>
                 <!-- Modal Input karyawan -->
@@ -98,7 +100,7 @@
                                 <td>
                                     <form action="{{ route('user.delete', $user->id) }}" method="post">
                                     <a class="btn btn-primary btn-sm" style="color:white"><i class="fa fa-edit"></i> Edit</a>
-                                    
+
                                         @csrf
                                         <button class="btn btn-danger btn-sm" onClick="return confirm('Anda yakin hapus data?')"><i class="fa fa-trash"></i> Hapus</button>
                                     </form>

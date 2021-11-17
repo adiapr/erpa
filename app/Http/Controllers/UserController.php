@@ -25,6 +25,7 @@ class UserController extends Controller
         $user->role         = $request->role;
         $user->save();
 
+        toast('Data berhasil ditambahkan',  'success');
         return redirect('/user');
     }
 
