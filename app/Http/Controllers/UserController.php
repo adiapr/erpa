@@ -33,6 +33,19 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
 
+        toast('Data telah dihapus',  'warning');
+        return redirect('/user');
+    }
+
+    public function update(Request $request, $id){
+        $user = User::find($id);
+        $user->name     = $request->nama;
+        $user->email    = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role     = $request->role;
+        $user->update();
+
+        toast('Data berhasil diperbaharui',  'success');
         return redirect('/user');
     }
 }

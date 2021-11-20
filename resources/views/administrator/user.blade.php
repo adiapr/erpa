@@ -72,7 +72,6 @@
                         </div>
                         </form>
                     </div>
-
                     </div>
                 </div>
             </div>
@@ -99,11 +98,63 @@
                                 <td>{{ $user->role}}</td>
                                 <td>
                                     <form action="{{ route('user.delete', $user->id) }}" method="post">
-                                    <a class="btn btn-primary btn-sm" style="color:white"><i class="fa fa-edit"></i> Edit</a>
+                                    <a class="btn btn-primary btn-sm" data-toggle="modal"  data-target="#modalTambah{{ $user->id }}" style="color:white"><i class="fa fa-edit"></i> Edit</a>
 
                                         @csrf
                                         <button class="btn btn-danger btn-sm" onClick="return confirm('Anda yakin hapus data?')"><i class="fa fa-trash"></i> Hapus</button>
                                     </form>
+                                    <div class="modal fade" id="modalTambah{{ $user->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        <form action="{{ route('user.update', $user->id) }}" method="post">
+                                                {{ csrf_field() }}
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Edit Data</b></h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="smallInput">Nama</label>
+                                                            <input type="text" required name="nama" value="{{ $user->name }}" class="form-control form-control-sm" id="smallInput" placeholder="Masukkan data karyawan">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="smallInput">Email</label>
+                                                            <input type="text" required name="email" value="{{ $user->email }}" class="form-control form-control-sm" id="smallInput" placeholder="ex. nama@mangrovecorp.id">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="smallInput">Password</label>
+                                                            <input type="text" required name="password" class="form-control form-control-sm" id="smallInput" placeholder="Masukkan Ulang">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="smallInput">Role</label>
+                                                            <select name="role" required class="form-control form-control-sm" id="smallInput">
+                                                                <option value="">-- Pilih Role --</option>
+                                                                <option value="Administrator">Administrator</option>
+                                                                <option value="Asosiasi">Asosiasi</option>
+                                                                <option value="Ketua">ketua</option>
+                                                                <option value="Hukum">Hukum</option>
+                                                                <option value="Verifikator">Verifikator</option>
+                                                            </select>
+                                                            {{-- <input type="text" name="nama" class="form-control form-control-sm" id="smallInput"> --}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach

@@ -31,5 +31,6 @@ Route::get('penjual',function(){
 Route::get('/user',             [UserController::class, 'index'])       ->middleware('checkRole:adminstrator');
 Route::post('user/add',         [UserController::class, 'add'])         ->middleware('checkRole:adminstrator')->name('user.add');
 Route::post('user/delete/{id}', [UserController::class, 'delete'])     ->middleware('checkRole:adminstrator')->name('user.delete');
+Route::post('user/update/{id}', [UserController::class, 'update'])      ->middleware('checkRole:adminstrator')->name('user.update');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
