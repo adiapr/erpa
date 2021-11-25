@@ -4,7 +4,7 @@
         <div class="sidebar-content">
             <ul class="nav nav-primary">
                 <li class="nav-item active">
-                    <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                    <a  href="/home" class="collapsed" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
@@ -18,59 +18,24 @@
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#base">
                         <i class="fas fa-layer-group"></i>
-                        <p>Base</p>
+                        <p>Pengurus Asosiasi</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="../components/avatars.html">
-                                    <span class="sub-item">Avatars</span>
+                                <a href="/asosiasi/tambahpermohonan">
+                                    <span class="sub-item">Tambah Permohonan</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="../components/buttons.html">
-                                    <span class="sub-item">Buttons</span>
+                                <a href="/asosiasi/tambahpendaftaran">
+                                    <span class="sub-item">Tambah Pendaftaran</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="../components/gridsystem.html">
-                                    <span class="sub-item">Grid System</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../components/panels.html">
-                                    <span class="sub-item">Panels</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../components/notifications.html">
-                                    <span class="sub-item">Notifications</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../components/sweetalert.html">
-                                    <span class="sub-item">Sweet Alert</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../components/font-awesome-icons.html">
-                                    <span class="sub-item">Font Awesome Icons</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../components/simple-line-icons.html">
-                                    <span class="sub-item">Simple Line Icons</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../components/flaticons.html">
-                                    <span class="sub-item">Flaticons</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../components/typography.html">
-                                    <span class="sub-item">Typography</span>
+                                <a href="/asosiasi/organisasi">
+                                    <span class="sub-item">Konfigurasi Organisasi</span>
                                 </a>
                             </li>
                         </ul>
@@ -79,24 +44,24 @@
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#sidebarLayouts">
                         <i class="fas fa-th-list"></i>
-                        <p>Sidebar Layouts</p>
+                        <p>Daftar Peserta</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="sidebarLayouts">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="../sidebar-style-1.html">
-                                    <span class="sub-item">Sidebar Style 1</span>
+                                    <span class="sub-item">Belum Terverifikasi</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../overlay-sidebar.html">
-                                    <span class="sub-item">Overlay Sidebar</span>
+                                    <span class="sub-item">Verifikasi</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../compact-sidebar.html">
-                                    <span class="sub-item">Compact Sidebar</span>
+                                    <span class="sub-item">Tidak Lulus</span>
                                 </a>
                             </li>
                             <li>

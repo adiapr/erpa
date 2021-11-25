@@ -5,7 +5,7 @@
 @endsection
 
 @section('menu')
-    Management
+    Pendaftaran
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title pull-left">List data asosiasi</h4>
+                <h4 class="card-title pull-left">List data pendaftaran</h4>
                 <button class="btn btn-warning btn-sm pull-right" data-toggle="modal"  data-target="#importExcel"><i class="fa fa-download"></i>&nbsp;  Download</button>
                 <button class="btn btn-success btn-sm pull-right mr-2" data-toggle="modal"  data-target="#importExcel"><i class="fa fa-file-excel"></i>&nbsp;  Import Excel</button>
 
@@ -32,36 +32,56 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="smallInput">Nama</label>
-                                        <input type="text" required name="nama" class="form-control form-control-sm" id="smallInput" placeholder="Masukkan data karyawan">
+                                        <label for="smallInput">Nama Lengkap</label>
+                                        <input type="text" required name="nama" class="form-control form-control-sm" id="smallInput" placeholder="Beserta Gelar">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="smallInput">Email</label>
-                                        <input type="text" required name="email" class="form-control form-control-sm" id="smallInput" placeholder="ex. nama@mangrovecorp.id">
+                                        <label for="smallInput">Tempat Lahir</label>
+                                        <input type="text" required name="tempat_lahir" class="form-control form-control-sm" id="smallInput" placeholder="Kota kelahiran">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="smallInput">Password</label>
-                                        <input type="text" required name="password" class="form-control form-control-sm" id="smallInput" placeholder="Masukkan password">
+                                        <label for="smallInput">Tanggal Lahir</label>
+                                        <input type="date" required name="tgl_lahir" class="form-control form-control-sm" id="smallInput">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="smallInput">Role</label>
-                                        <select name="role" required class="form-control form-control-sm" id="smallInput">
-                                            <option value="">-- Pilih Role --</option>
-                                            <option value="Administrator">Administrator</option>
-                                            <option value="Asosiasi">Asosiasi</option>
-                                            <option value="Ketua">ketua</option>
-                                            <option value="Hukum">Hukum</option>
-                                            <option value="Verifikator">Verifikator</option>
+                                        <label for="smallInput">Alamat</label>
+                                        <input type="text" required name="alamat" class="form-control form-control-sm" id="smallInput" placeholder="Masukkan alamat">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="smallInput">Agama</label>
+                                        <input type="text" required name="password" class="form-control form-control-sm" id="smallInput" placeholder="Masukkan agama">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="smallInput">Jenis Kelamin</label>
+                                        <select name="jk" required class="form-control">
+                                            <option value="">-- Pilih --</option>
+                                            <option value="Laki - Laki">Laki - Laki</option>
+                                            <option value="Perempuan">Perempuan</option>
                                         </select>
-                                        {{-- <input type="text" name="nama" class="form-control form-control-sm" id="smallInput"> --}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="smallInput">No SK Pengangkatan</label>
+                                        <input type="number" required name="no_sk" class="form-control form-control-sm" id="smallInput" placeholder="Masukkan no SK anda">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="smallInput">Tanggal SK Pengangkatan</label>
+                                        <input type="date" required name="tgl_sk" class="form-control form-control-sm" id="smallInput" placeholder="Masukkan password">
                                     </div>
                                 </div>
                             </div>
@@ -81,21 +101,19 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>KD Asosiasi</th>
                                 <th>Nama</th>
-                                <th>Email</th>
-                                <th>Password</th>
-                                <th>Role</th>
+                                <th>Domisili</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($dataasosiasi as $data) --}}
+                            @foreach ($dataasosiasi as $data)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $data->kode_asosiasi }}</td>
+                                <td>{{ $data->nama }}</td>
+                                <td>{{ $data->domisili }}</td>
                                 <td>
                                     <form action="" method="post">
                                     <a class="btn btn-primary btn-sm" data-toggle="modal"  data-target="#modalTambah1" style="color:white"><i class="fa fa-edit"></i> Edit</a>
@@ -158,7 +176,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            {{-- @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

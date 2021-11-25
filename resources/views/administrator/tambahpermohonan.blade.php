@@ -81,21 +81,19 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>KD Asosiasi</th>
                                 <th>Nama</th>
-                                <th>Email</th>
-                                <th>Password</th>
-                                <th>Role</th>
+                                <th>Domisili</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($dataasosiasi as $data) --}}
+                            @foreach ($dataasosiasi as $data)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $data->kode_asosiasi }}</td>
+                                <td>{{ $data->nama }}</td>
+                                <td>{{ $data->domisili }}</td>
                                 <td>
                                     <form action="" method="post">
                                     <a class="btn btn-primary btn-sm" data-toggle="modal"  data-target="#modalTambah1" style="color:white"><i class="fa fa-edit"></i> Edit</a>
@@ -158,7 +156,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            {{-- @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

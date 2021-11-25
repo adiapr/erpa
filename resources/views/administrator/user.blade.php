@@ -123,6 +123,7 @@
                                                         <div class="form-group">
                                                             <label for="smallInput">Email</label>
                                                             <input type="text" required name="email" value="{{ $user->email }}" class="form-control form-control-sm" id="smallInput" placeholder="ex. nama@mangrovecorp.id">
+
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">

@@ -48,4 +48,8 @@ class UserController extends Controller
         toast('Data berhasil diperbaharui',  'success');
         return redirect('/user');
     }
+
+    public function profile(){
+        return view('data.profile');
+    }
 }
