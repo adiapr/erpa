@@ -106,7 +106,7 @@
                                     <div class="modal fade" id="modalEdit{{ $data->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
-                                        <form action="" method="post">
+                                        <form action="{{ route('asosiasi.organisasi.update', $data->id) }}" method="post">
                                                 {{ csrf_field() }}
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel"><b>Edit Data</b></h5>

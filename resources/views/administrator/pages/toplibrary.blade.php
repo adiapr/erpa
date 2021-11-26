@@ -1,10 +1,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>@yield('title')</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="icon" href="../../assets/img/icon.ico" type="image/x-icon"/>
 
 	<!-- Fonts and icons -->
 	<script src="../../assets/js/plugin/webfont/webfont.min.js"></script>
+    {{-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" /> --}}
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script>
 		WebFont.load({
 			google: {"families":["Lato:300,400,700,900"]},

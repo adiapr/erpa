@@ -14,6 +14,40 @@
 <script src="../../assets/js/atlantis.min.js"></script>
 <!-- Atlantis DEMO methods, don't include it in your project! -->
 <script src="../../assets/js/setting-demo2.js"></script>
+{{-- autocomplete --}}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    var cache = {};
+    $(document).ready(function(){
+        $( "#nama_organisasi" ).autocomplete({
+            source: function( request, response ) {
+                var term = request.term;
+                console.log(request.term)
+            $.ajax({
+                url:"{{route('asosiasi.organisasi.autocomplete')}}",
+                type: 'post',
+                dataType: "json",
+                data: {
+                    _token: CSRF_TOKEN,
+                    cari: request.term
+                },
+                success: function( data ) {
+                response( data );
+                }
+            });
+            },
+            select: function (event, ui) {
+            $('#nama_organisasi').val(ui.item.label);
+            $('#alamat_organisasi').val(ui.item.alamat_organisasi);
+            $('#telp').val(ui.item.telp);
+            return false;
+            }
+        });
+    });
+</script>
+
 <script >
     $(document).ready(function() {
         $('#basic-datatables').DataTable({

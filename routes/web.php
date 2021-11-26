@@ -42,6 +42,8 @@ Route::get('/asosiasi/tambahpermohonan',        [AsosiasiController::class, 'tam
 Route::get('/asosiasi/tambahpendaftaran',       [AsosiasiController::class, 'tambahpendaftaran'])->middleware('checkRole:adminstrator');
 Route::get('/asosiasi/organisasi',              [AsosiasiController::class, 'view_organisasi'])->middleware('checkRole:adminstrator');
 Route::post('/asosiasi/organiasai/add',          [AsosiasiController::class, 'add_organisasi'])->middleware('checkRole:adminstrator')->name('organisasi.add');
-Route::post('/asosiasi/organisasi/delete/{$id}', [AsosiasiController::class, 'delete_organisasi'])->middleware('checkRole:adminstrator')->name('asosiasi.organisasi.delete');
+Route::post('/asosiasi/organisasi/delete/{id}', [AsosiasiController::class, 'delete_organisasi'])->middleware('checkRole:adminstrator')->name('asosiasi.organisasi.delete');
+Route::post('/asosiasi/organisasi/update/{id}', [AsosiasiController::class, 'update_organisasi'])->middleware('checkRole:adminstrator')->name('asosiasi.organisasi.update');
+Route::post('/asosiasi/organisasi/autocomplete', [AsosiasiController::class, 'dataorganisasi'])->name('asosiasi.organisasi.autocomplete');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

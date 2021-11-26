@@ -5,6 +5,8 @@ use App\Models\Asosiasi;
 use App\Models\organisasi;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 
 class AsosiasiController extends Controller
 {
@@ -15,6 +17,32 @@ class AsosiasiController extends Controller
         return view('administrator.asosiasi', compact('no', 'dataasosiasi'));
     }
 
+    //autofill permohonan dari organisasi
+    public function dataorganisasi(Request $request){
+        $search = $request->cari;
+
+        $dataorganisasi = DB::table('table_organisasi')
+                            ->select('id','nama_organisasi','alamat','telp');
+        $search = !empty($request->cari) ? ($request->cari) : ('');
+
+        if($search){
+            $dataorganisasi->where('nama_organisasi','like','%' .$search . '%');
+        }
+        $data = $dataorganisasi->limit(5)->get();
+
+        $response = array();
+        foreach($data as $organisasi){
+            $response[] = array(
+                "value" => $organisasi->id,
+                "label" => $organisasi->nama_organisasi,
+                "alamat_organisasi" => $organisasi->alamat,
+                "telp" => $organisasi->telp
+            );
+        }
+        return response()->json($response);
+    }
+
+    //tambah permohonan
     public function tambahpermohonan(){
         $no = 1;
         $dataasosiasi = Asosiasi::orderBy('id', 'desc')->get();
@@ -46,14 +74,27 @@ class AsosiasiController extends Controller
         $organisasi->save();
 
         toast('Data berhasil ditambahkan');
-        return view('administrator.konfigurasi_organisasi');
+        return Redirect('/asosiasi/organisasi');
     }
 
     public function delete_organisasi($id){
         $organisasi = organisasi::find($id);
-
         $organisasi->delete();
+
         toast('Data telah dihapus',  'warning');
-        return view('administrator.konfigurasi_organisasi');
+        return redirect('/asosiasi/organisasi');
+    }
+
+    public function update_organisasi(Request $request, $id){
+        $organisasi = organisasi::find($id);
+        $organisasi->nama_organisasi = $request->nama;
+        $organisasi->alamat     = $request->alamat;
+        $organisasi->telp       = $request->telp;
+        $organisasi->email      = $request->email;
+        $organisasi->pengurus   = $request->pengurus;
+        $organisasi->update();
+
+        toast('Data berhasil diperbaharui');
+        return redirect('asosiasi/organisasi');
     }
 }
