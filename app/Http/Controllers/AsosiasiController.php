@@ -22,7 +22,7 @@ class AsosiasiController extends Controller
         $search = $request->cari;
 
         $dataorganisasi = DB::table('table_organisasi')
-                            ->select('id','nama_organisasi','alamat','telp');
+                            ->select('id','nama_organisasi','alamat','telp','pengurus');
         $search = !empty($request->cari) ? ($request->cari) : ('');
 
         if($search){
@@ -33,10 +33,11 @@ class AsosiasiController extends Controller
         $response = array();
         foreach($data as $organisasi){
             $response[] = array(
-                "value" => $organisasi->id,
-                "label" => $organisasi->nama_organisasi,
+                "value" => $organisasi->nama_organisasi,
+                "nama_organisasi" => $organisasi->nama_organisasi,
                 "alamat_organisasi" => $organisasi->alamat,
-                "telp" => $organisasi->telp
+                "telp" => $organisasi->telp,
+                "pengurus" => $organisasi->pengurus,
             );
         }
         return response()->json($response);
