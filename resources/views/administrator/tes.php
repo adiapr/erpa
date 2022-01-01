@@ -1,114 +1,165 @@
-<!--   Core JS Files   -->
-<script src="../../assets/js/core/jquery.3.2.1.min.js"></script>
-<script src="../../assets/js/core/popper.min.js"></script>
-<script src="../../assets/js/core/bootstrap.min.js"></script>
-<!-- jQuery UI -->
-<script src="../../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-<script src="../../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+<?php
+	include('pages/head.php');
+?>
+<body>
+	<div class="wrapper">
+		<?php include("pages/header.php"); ?>
+		<!-- Sidebar -->
+		<?php include("pages/sidebar.php"); ?>
+		<div class="main-panel">
+			<div class="content">
+				<div class="page-inner">
+					<div class="page-header">
+						<h4 class="page-title">Data Raport</h4>
+						<ul class="breadcrumbs">
+							<li class="nav-home">
+								<a href="#">
+									<i class="flaticon-home"></i>
+								</a>
+							</li>
+							<li class="separator">
+								<i class="flaticon-right-arrow"></i>
+							</li>
+							<li class="nav-item">
+								<a href="#">Peminatan</a>
+							</li>
+							<li class="separator">
+								<i class="flaticon-right-arrow"></i>
+							</li>
+							<li class="nav-item">
+								<a href="#">List Data Raport</a>
+							</li>
+						</ul>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+                                    <h4 class="card-title pull-left">List Data</h4>
 
-<!-- jQuery Scrollbar -->
-<script src="../../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-<!-- Datatables -->
-<script src="../../assets/js/plugin/datatables/datatables.min.js"></script>
-<!-- Atlantis JS -->
-<script src="../../assets/js/atlantis.min.js"></script>
-<!-- Atlantis DEMO methods, don't include it in your project! -->
-<script src="../../assets/js/setting-demo2.js"></script>
-{{-- autocomplete --}}
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
-<script type="text/javascript">
-    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    var cache = {};
-    $(document).ready(function(){
-        $( "#nama_organisasi" ).autocomplete({
-            source: function( request, response ) {
-                var term = request.term;
-                console.log(request.term)
-            $.ajax({
-                url:"{{route('asosiasi.organisasi.autocomplete')}}",
-                type: 'post',
-                dataType: "json",
-                data: {
-                    _token: CSRF_TOKEN,
-                    cari: request.term
-                },
-                success: function( data ) {
-                response( data );
-                }
-            });
-            },
-            select: function (event, ui) {
-            $('#nama_organisasi').val(ui.item.label);
-            $('#alamat_organisasi').val(ui.item.alamat_organisasi);
-            $('#telp').val(ui.item.telp);
-            return false;
-            }
-        });
-    });
-</script>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table id="basic-datatables" class="display table table-hover table-responsive table-bordered" >
+											<thead>
+												<tr>
+													<th>#</th>
+        											<th>Nama Siswa</th>
+        											<th>Matematika</th>
+        											<th>IPA</th>
+        											<th>IPS</th>
+        											<th>B.Indonesia</th>
+                                                    <th>B.Inggris</th>
+												</tr>
+											</thead>
+											<tbody>
+											    <?php
+											        include("database/koneksi.php");
 
-<script >
-    $(document).ready(function() {
-        $('#basic-datatables').DataTable({
-        });
+											     //   $batas = 10;
+                //                     				$halaman = isset($_GET['halaman'])?(int)$_GET['halaman'] : 1;
+                //                     				$aktif = $_GET['halaman'];
+                //                     				$halaman_awal = ($halaman>1) ? ($halaman * $batas) - $batas : 0;
 
-        $('#multi-filter-select').DataTable( {
-            "pageLength": 5,
-            initComplete: function () {
-                this.api().columns().every( function () {
-                    var column = this;
-                    var select = $('<select class="form-control"><option value=""></option></select>')
-                    .appendTo( $(column.footer()).empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                            );
+                //                     				$previous = $halaman - 1;
+                //                     				$next = $halaman + 1;
 
-                        column
-                        .search( val ? '^'+val+'$' : '', true, false )
-                        .draw();
-                    } );
+                //                     				$data = mysqli_query($koneksi,"select * from data_siswa");
+                //                     				$jumlah_data = mysqli_num_rows($data);
+                //                     				$total_halaman = ceil($jumlah_data / $batas);
 
-                    column.data().unique().sort().each( function ( d, j ) {
-                        select.append( '<option value="'+d+'">'+d+'</option>' )
-                    } );
-                } );
-            }
-        });
+                                    				$data_pegawai = mysqli_query($koneksi,"select * from data_siswa");
+                                    				$nomor = $halaman_awal+1;
+											        while($data = mysqli_fetch_array($data_pegawai)){
 
-        // Add Row
-        $('#add-row').DataTable({
-            "pageLength": 5,
-        });
 
-        var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
+											    ?>
+												<tr>
+													<td><?php echo $nomor++; ?></td>
+        											<td>
+        											     <a href="#" data-toggle="modal" data-target="#editData<?php echo $data['id'] ?>">
+        											         <?php echo $data['nama_lengkap'] ?>
+        											     </a>
+        											    <div class="modal fade" id="editData<?php echo $data['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                <form action="controller/updateraport.php?id=<?php echo $data['id'] ?>">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel"><?php echo $data['nama_lengkap'] ?></h5>
+                                                                    <!-- <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">x</button> -->
+                                                                </div>
+                                                                    <div class="modal-body">
 
-        $('#addRowButton').click(function() {
-            $('#add-row').dataTable().fnAddData([
-                $("#addName").val(),
-                $("#addPosition").val(),
-                $("#addOffice").val(),
-                action
-                ]);
-            $('#addRowModal').modal('hide');
-
-        });
-    });
-</script>
-<script>
-    function bacaGambar(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#gambar_nodin').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $("#preview_gambar").change(function(){
-         bacaGambar(this);
-    });
-</script>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group form-group-default">
+                                                                                    <label>Nama Siswa</label>
+                                                                                    <input type="text" class="form-control" name="nama" value="<?php echo $data['nama_lengkap'] ?>" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group form-group-default">
+                                                                                    <label>Matematika</label>
+                                                                                    <input type="number" class="form-control" max="100" required name="mat" value="<?php echo $data['raportmat'] ?> ">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group form-group-default">
+                                                                                    <label>IPA</label>
+                                                                                    <input type="number" class="form-control" name="ipa" max="100" required value="<?php echo $data['raportipa'] ?>">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group form-group-default">
+                                                                                    <label>IPS</label>
+                                                                                    <input type="number" class="form-control" name="ips" max="100" required value="<?php echo $data['raportips'] ?>">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group form-group-default">
+                                                                                    <label>B. Indonesia</label>
+                                                                                    <input type="number" class="form-control" name="bindo" max="100" required value="<?php echo $data['raportbindo'] ?>">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group form-group-default">
+                                                                                    <label>Raport B.Inggris</label>
+                                                                                    <input type="text" class="form-control" name="binggris" max="100" required value="<?php echo $data['number'] ?>">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
+                                                                    </div>
+                                                                </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+        											</td>
+        											<td><?php echo $data['raportmat'] ?></td>
+                                                    <td><?php echo $data['raportipa'] ?></td>
+                                                    <td><?php echo $data['raportips'] ?></td>
+        											<td><?php echo $data['raportbindo'] ?></td>
+                                                    <td><?php echo $data['raportbing'] ?></td>
+												</tr>
+												<?php
+											        }
+												?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<?php include("pages/footer.php"); ?>
+		</div>
+	</div>
+	<!--   Core JS Files   -->
+	<?php include("pages/foot.php"); ?>
+</body>
+</html>

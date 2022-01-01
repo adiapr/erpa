@@ -38,7 +38,11 @@ Route::post('user/delete/{id}', [UserController::class, 'delete'])     ->middlew
 Route::post('user/update/{id}', [UserController::class, 'update'])      ->middleware('checkRole:adminstrator')->name('user.update');
 
 Route::get('/asosiasi',         [AsosiasiController::class, 'index'])   ->middleware('checkRole:adminstrator');
-Route::get('/asosiasi/tambahpermohonan',        [AsosiasiController::class, 'tambahpermohonan'])->middleware('checkRole:adminstrator');
+
+// Permohonan
+Route::get('/asosiasi/tambahpermohonan',         [AsosiasiController::class, 'tambahpermohonan'])->middleware('checkRole:adminstrator');
+Route::post('/asosiasi/tambahpermohonan/add',    [AsosiasiController::class, 'permohonan_add'])->middleware('checkRole:adminstrator')->name('asosiasi.addpermohonan');
+
 Route::get('/asosiasi/tambahpendaftaran',       [AsosiasiController::class, 'tambahpendaftaran'])->middleware('checkRole:adminstrator');
 Route::get('/asosiasi/organisasi',              [AsosiasiController::class, 'view_organisasi'])->middleware('checkRole:adminstrator');
 Route::post('/asosiasi/organiasai/add',          [AsosiasiController::class, 'add_organisasi'])->middleware('checkRole:adminstrator')->name('organisasi.add');

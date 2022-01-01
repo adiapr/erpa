@@ -92,11 +92,11 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $data->nama_organisasi }}</td>
-                                <td>{{ $data->alamat }}</td>
+                                <td><div style="width:250px;"></div>{{ $data->alamat }}</td>
                                 <td>{{ $data->telp }}</td>
                                 <td>{{ $data->email }}</td>
                                 <td>{{ $data->pengurus }}</td>
-                                <td>
+                                <td><div style="width:150px;"></div>
                                 <form action="{{ route('asosiasi.organisasi.delete', $data->id) }}" method="post">
                                     <a class="btn btn-primary btn-sm" data-toggle="modal"  data-target="#modalEdit{{ $data->id }}" style="color:white"><i class="fa fa-edit"></i> Edit</a>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Asosiasi;
 use App\Models\organisasi;
+use App\Models\Permohonan;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -43,12 +44,45 @@ class AsosiasiController extends Controller
         return response()->json($response);
     }
 
-    //tambah permohonan
+    //permohonan view
     public function tambahpermohonan(){
         $no = 1;
-        $dataasosiasi = Asosiasi::orderBy('id', 'desc')->get();
+        $datapermohonan = Permohonan::orderBy('id', 'desc')->get();
 
-        return view('administrator.tambahpermohonan', compact('no', 'dataasosiasi'));
+        return view('administrator.tambahpermohonan', compact('no', 'datapermohonan'));
+    }
+
+    // permohonan add
+    public function permohonan_add(Request $request){
+        $this->validate($request,[
+            'alamat'        => 'required|string',
+            'telp'          => 'required|string',
+            'namapengurus'  => 'required|string',
+            'bulan'         => 'numeric|max:12|min:1',
+            'tahun'         => 'numeric|max:9999|min:1998'
+        ]);
+
+        $permohonan = new Permohonan;
+
+        $permohonan -> nama_organisasi      = $request->nama_organisasi;
+        $permohonan -> alamat_organisasi    = $request->alamat;
+        $permohonan -> telp_organisasi      = $request->telp;
+        $permohonan -> nomor_permohonan     = null;
+        $permohonan -> kode_asosiasi        = $request->kodeasosiasi;
+        $permohonan -> bulan                = date('mm');
+        $permohonan -> tahun                = date('y');
+        $permohonan -> nama_kota            = $request->kota;
+        $permohonan -> tanggal_surat        = date('d M Y');
+        $permohonan -> lampiran             = $request->lampiran;
+        $permohonan -> perihal              = $request->perihal;
+        $permohonan -> jabatan_pengurus     = $request->jabatan;
+        $permohonan -> nama_pengurus        = $request->namapengurus;
+
+        $permohonan -> save();
+
+        toast('Data berhasil ditambahkan', 'success');
+        return Redirect('/asosiasi/tambahpermohonan');
+
     }
 
     public function tambahpendaftaran(){
