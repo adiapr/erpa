@@ -22,32 +22,37 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('admin',function(){
-    return view('administrator.datatables');
-})->middleware('checkRole:adminstrator');
+// Route::get('admin',function(){
+//     return view('administrator.datatables');
+// })->middleware('checkRole:adminstrator');
 
-Route::get('penjual',function(){
-    return view('penjual');
-})->middleware('checkRole:adminstrator,asosiasi');
+// Route::get('penjual',function(){
+//     return view('penjual');
+// })->middleware('checkRole:adminstrator,asosiasi');
 
 
-Route::get('/user',             [UserController::class, 'index'])       ->middleware('checkRole:adminstrator');
-Route::get('/user/profile',     [UserController::class, 'profile'])      ->middleware('checkRole:adminstrator');
-Route::post('user/add',         [UserController::class, 'add'])         ->middleware('checkRole:adminstrator')->name('user.add');
-Route::post('user/delete/{id}', [UserController::class, 'delete'])     ->middleware('checkRole:adminstrator')->name('user.delete');
-Route::post('user/update/{id}', [UserController::class, 'update'])      ->middleware('checkRole:adminstrator')->name('user.update');
+Route::get('/user',             [UserController::class, 'index'])       ->middleware('checkRole:administrator');
+Route::get('/user/profile',     [UserController::class, 'profile'])      ->middleware('checkRole:administrator');
+Route::post('user/add',         [UserController::class, 'add'])         ->middleware('checkRole:administrator')->name('user.add');
+Route::post('user/delete/{id}', [UserController::class, 'delete'])     ->middleware('checkRole:administrator')->name('user.delete');
+Route::post('user/update/{id}', [UserController::class, 'update'])      ->middleware('checkRole:administrator')->name('user.update');
 
-Route::get('/asosiasi',         [AsosiasiController::class, 'index'])   ->middleware('checkRole:adminstrator');
+Route::get('/asosiasi',         [AsosiasiController::class, 'index'])   ->middleware('checkRole:administrator');
 
 // Permohonan
-Route::get('/asosiasi/tambahpermohonan',         [AsosiasiController::class, 'tambahpermohonan'])->middleware('checkRole:adminstrator');
-Route::post('/asosiasi/tambahpermohonan/add',    [AsosiasiController::class, 'permohonan_add'])->middleware('checkRole:adminstrator')->name('asosiasi.addpermohonan');
+Route::get('/asosiasi/tambahpermohonan',         [AsosiasiController::class, 'tambahpermohonan'])->middleware('checkRole:administrator');
+Route::post('/asosiasi/tambahpermohonan/add',    [AsosiasiController::class, 'permohonan_add'])->middleware('checkRole:administrator')->name('asosiasi.addpermohonan');
+Route::post('/asosiasi/tambahpermohonan/update/{id}',   [AsosiasiController::class, 'permohonan_update'])->middleware('checkRole:administrator');
+Route::post('/asosiasi/tambahpermohonan/delete/{id}',   [AsosiasiController::class, 'permohonan_delete'])->middleware('checkRole:administrator');
 
-Route::get('/asosiasi/tambahpendaftaran',       [AsosiasiController::class, 'tambahpendaftaran'])->middleware('checkRole:adminstrator');
-Route::get('/asosiasi/organisasi',              [AsosiasiController::class, 'view_organisasi'])->middleware('checkRole:adminstrator');
-Route::post('/asosiasi/organiasai/add',          [AsosiasiController::class, 'add_organisasi'])->middleware('checkRole:adminstrator')->name('organisasi.add');
-Route::post('/asosiasi/organisasi/delete/{id}', [AsosiasiController::class, 'delete_organisasi'])->middleware('checkRole:adminstrator')->name('asosiasi.organisasi.delete');
-Route::post('/asosiasi/organisasi/update/{id}', [AsosiasiController::class, 'update_organisasi'])->middleware('checkRole:adminstrator')->name('asosiasi.organisasi.update');
+// Pendaftaran 
+Route::get('/asosiasi/tambahpendaftaran',       [AsosiasiController::class, 'tambahpendaftaran'])->middleware('checkRole:administrator');
+
+// organisasi 
+Route::get('/asosiasi/organisasi',              [AsosiasiController::class, 'view_organisasi'])->middleware('checkRole:administrator');
+Route::post('/asosiasi/organiasai/add',          [AsosiasiController::class, 'add_organisasi'])->middleware('checkRole:administrator')->name('organisasi.add');
+Route::post('/asosiasi/organisasi/delete/{id}', [AsosiasiController::class, 'delete_organisasi'])->middleware('checkRole:administrator')->name('asosiasi.organisasi.delete');
+Route::post('/asosiasi/organisasi/update/{id}', [AsosiasiController::class, 'update_organisasi'])->middleware('checkRole:administrator')->name('asosiasi.organisasi.update');
 Route::post('/asosiasi/organisasi/autocomplete', [AsosiasiController::class, 'dataorganisasi'])->name('asosiasi.organisasi.autocomplete');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

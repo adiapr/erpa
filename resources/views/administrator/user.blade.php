@@ -55,11 +55,11 @@
                                         <label for="smallInput">Role</label>
                                         <select name="role" required class="form-control form-control-sm" id="smallInput">
                                             <option value="">-- Pilih Role --</option>
-                                            <option value="Administrator">Administrator</option>
-                                            <option value="Asosiasi">Asosiasi</option>
-                                            <option value="Ketua">ketua</option>
-                                            <option value="Hukum">Hukum</option>
-                                            <option value="Verifikator">Verifikator</option>
+                                            <option value="administrator">Administrator</option>
+                                            <option value="asosiasi">Asosiasi</option>
+                                            <option value="ketua">ketua</option>
+                                            <option value="hukum">Hukum</option>
+                                            <option value="verifikator">Verifikator</option>
                                         </select>
                                         {{-- <input type="text" name="nama" class="form-control form-control-sm" id="smallInput"> --}}
                                     </div>

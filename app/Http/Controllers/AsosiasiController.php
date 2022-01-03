@@ -52,7 +52,7 @@ class AsosiasiController extends Controller
         return view('administrator.tambahpermohonan', compact('no', 'datapermohonan'));
     }
 
-    // permohonan add
+    // permohonan
     public function permohonan_add(Request $request){
         $this->validate($request,[
             'alamat'        => 'required|string',
@@ -85,6 +85,38 @@ class AsosiasiController extends Controller
 
     }
 
+    public function permohonan_update(Request $request, $id){
+        $permohonan = Permohonan::find($id);
+
+        $permohonan ->nama_organisasi      = $request->nama_organisasi;
+        $permohonan ->alamat_organisasi    = $request->alamat;
+        $permohonan ->telp_organisasi      = $request->telp;
+        // $permohonan -> nomor_permohonan     = null;
+        $permohonan ->kode_asosiasi        = $request->kodeasosiasi;
+        // $permohonan -> bulan                = date('mm');
+        // $permohonan -> tahun                = date('y');
+        $permohonan ->nama_kota            = $request->kota;
+        // $permohonan -> tanggal_surat        = date('d M Y');
+        $permohonan ->lampiran             = $request->lampiran;
+        $permohonan ->perihal              = $request->perihal;
+        $permohonan ->jabatan_pengurus     = $request->jabatan;
+        $permohonan ->nama_pengurus        = $request->namapengurus;
+
+        $permohonan->update();
+
+        toast('Data berhasil diperbaharui');
+        return redirect('/asosiasi/tambahpermohonan');
+    }
+
+    public function permohonan_delete($id){
+        $permohonan = Permohonan::find($id);
+        $permohonan->delete();
+
+        toast('Data telah dihapus',  'warning');
+        return redirect('/asosiasi/tambahpermohonan');
+    }
+
+    // pendaftaran 
     public function tambahpendaftaran(){
         $no = 1;
         $dataasosiasi = Asosiasi::orderBy('id', 'desc')->get();
@@ -92,6 +124,7 @@ class AsosiasiController extends Controller
         return view('administrator.tambahpendaftaran', compact('no', 'dataasosiasi'));
     }
 
+    // organisasi
     public function view_organisasi(){
         $no = 1;
         $dataorganisasi = organisasi::orderBy('id','desc')->get();

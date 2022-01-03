@@ -59,42 +59,18 @@
                             </div>
                         </div>
                         <hr>
-                        {{-- <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="smallInput">Nomor Permohonan</label>
-                                <input type="text" required name="nomorpermohonan" value="{{ old('nomorpermohonan') }}" class="form-control form-control-sm" id="smallInput">
-                            </div>
-                        </div> --}}
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="smallInput">Kode Asosiasi</label>
                                 <input type="text" required name="kodeasosiasi" value="{{ old('kodeasosiasi') }}" class="form-control form-control-sm" id="smallInput">
                             </div>
                         </div>
-                        {{-- <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="smallInput">Bulan</label>
-                                <input type="number" required name="bulan" value="{{ old('bulan') }}" class="form-control form-control-sm" placeholder="01,02 dst" id="smallInput">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="smallInput">Tahun</label>
-                                <input type="number" required name="tahun" value="{{ old('tahun') }}" placeholder="2020, 2019 dll" class="form-control form-control-sm" id="smallInput">
-                            </div>
-                        </div> --}}
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="smallInput">Kota</label>
                                 <input type="text" required name="kota" value="{{ old('kota') }}" class="form-control form-control-sm" id="smallInput">
                             </div>
                         </div>
-                        {{-- <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="smallInput">Tanggal</label>
-                                <input type="date" required name="tanggal" value="{{ old('tanggal') }}" class="form-control form-control-sm" id="smallInput">
-                            </div>
-                        </div> --}}
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="smallInput">Lampiran</label>
@@ -142,7 +118,7 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $data->nama_organisasi }}</td>
                                 <td>{{ $data->jabatan_pengurus }}</td>
-                                <td>{{ $data->nomor_permohonan }}</td>
+                                <td>{{ $data->id }}/ERPA/{{ $data->kode_asosiasi }}/{{ $data->bulan }}/{{ $data->tahun }}</td>
                                 <td>
                                     {{-- <button type="button" class="btn btn-primary btn-sm" >Cetak</button> --}}
                                     <button class="btn btn-success btn-sm" onclick="printContent('print{{ $data->id }}')"><i class="fa fa-print"></i></button>
@@ -164,7 +140,7 @@
                                                 <label for=""><strong>{{ $data->telp_organisasi }}</strong></label><br>
                                                 <hr style="height: 4px;"></p>
                                                 <div style="float: left; width:100px">Nomor</div>
-                                                <div style="float: left;">: {{ $data->id }}/erpa/{{ $data->kode_asosiasi }}/{{ $data->bulan }}/{{ $data->tahun }}</div>
+                                                <div style="float: left;">: {{ $data->id }}/ERPA/{{ $data->kode_asosiasi }}/{{ $data->bulan }}/{{ $data->tahun }}</div>
                                                 <div style="float: right;">{{ $data->nama_kota }}, {{ $data->tanggal_surat }}</div><br>
                                                 <div style="float: left; width:100px">Lampiran</div>
                                                 <div style="float: left;"> : {{ $data->lampiran }} Berkas </div><br>
@@ -213,16 +189,17 @@
 
                                 </td>
                                 <td>
-                                    <form action="" method="post">
-                                    <a class="btn btn-primary btn-sm" data-toggle="modal"  data-target="#modalTambah1" style="color:white"><i class="fa fa-edit"></i> Edit</a>
-
+                                    <form action="/asosiasi/tambahpermohonan/delete/{{ $data->id }}" method="post">
+                                    <a class="btn btn-primary btn-sm" data-toggle="modal"  data-target="#editp{{ $data->id }}" style="color:white"><i class="fa fa-edit"></i> Edit</a>
                                         @csrf
                                         <button class="btn btn-danger btn-sm" onClick="return confirm('Anda yakin hapus data?')"><i class="fa fa-trash"></i> Hapus</button>
                                     </form>
-                                    <div class="modal fade" id="modalTambah1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
+
+                                    {{-- edit modals  --}}
+                                    <div class="modal fade" id="editp{{ $data->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
-                                        <form action="" method="post">
+                                        <form action="/asosiasi/tambahpermohonan/update/{{ $data->id }}" method="post">
                                                 {{ csrf_field() }}
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel"><b>Edit Data</b></h5>
@@ -231,42 +208,64 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="smallInput">Nama</label>
-                                                            <input type="text" required name="nama" value="" class="form-control form-control-sm" id="smallInput" placeholder="Masukkan data karyawan">
+                                                            <label for="smallInput">{{ __('Nama Organisasi') }}</label>
+                                                            <input type="text" required value="{{ $data->nama_organisasi }}" readonly name="nama_organisasi" class="form-control form-control-sm" id="nama_organisasi">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label for="smallInput">Email</label>
-                                                            <input type="text" required name="email" value="" class="form-control form-control-sm" id="smallInput" placeholder="ex. nama@mangrovecorp.id">
-
+                                                            <label for="smallInput">Alamat Organisasi</label>
+                                                            <input type="text" required name="alamat" value="{{ $data->alamat_organisasi }}" readonly class="form-control form-control-sm" id="alamat_organisasi">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label for="smallInput">Password</label>
-                                                            <input type="text" required name="password" class="form-control form-control-sm" id="smallInput" placeholder="Masukkan Ulang">
+                                                            <label for="smallInput">Telp</label>
+                                                            <input type="text" required name="telp" value="{{ $data->telp_organisasi }}" readonly class="form-control form-control-sm" id="telp">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label for="smallInput">Role</label>
-                                                            <select name="role" required class="form-control form-control-sm" id="smallInput">
-                                                                <option value="">-- Pilih Role --</option>
-                                                                <option value="Administrator">Administrator</option>
-                                                                <option value="Asosiasi">Asosiasi</option>
-                                                                <option value="Ketua">ketua</option>
-                                                                <option value="Hukum">Hukum</option>
-                                                                <option value="Verifikator">Verifikator</option>
-                                                            </select>
-                                                            {{-- <input type="text" name="nama" class="form-control form-control-sm" id="smallInput"> --}}
+                                                            <label for="smallInput">Nama Pengurus</label>
+                                                            <input type="text" required name="namapengurus" value="{{ $data->nama_pengurus }}" readonly class="form-control form-control-sm" id="pengurus">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="smallInput">Jabatan</label>
+                                                            <input type="text" required name="jabatan" value="{{ $data->jabatan_pengurus }}"  class="form-control form-control-sm" id="smallInput">
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="smallInput">Kode Asosiasi</label>
+                                                            <input type="text" required name="kodeasosiasi" value="{{ $data->kode_asosiasi }}" class="form-control form-control-sm" id="smallInput">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="smallInput">Kota</label>
+                                                            <input type="text" required name="kota" value="{{ $data->nama_kota }}" class="form-control form-control-sm" id="smallInput">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="smallInput">Lampiran</label>
+                                                            <input type="number" required maxlength="1" name="lampiran" value="{{ $data->lampiran }}" class="form-control form-control-sm" id="smallInput">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="smallInput">Perihal</label>
+                                                            <input type="text" required name="perihal" value="{{ $data->perihal }}" class="form-control form-control-sm" id="smallInput">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
+                                                <button type="submit" class="btn btn-primary btn-sm">Perbaharui</button>
                                             </div>
                                             </form>
                                         </div>
