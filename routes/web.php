@@ -46,7 +46,8 @@ Route::post('/asosiasi/tambahpermohonan/update/{id}',   [AsosiasiController::cla
 Route::post('/asosiasi/tambahpermohonan/delete/{id}',   [AsosiasiController::class, 'permohonan_delete'])->middleware('checkRole:administrator');
 
 // Pendaftaran 
-Route::get('/asosiasi/tambahpendaftaran',       [AsosiasiController::class, 'tambahpendaftaran'])->middleware('checkRole:administrator');
+Route::get('/pendaftaran/biodata',      [AsosiasiController::class, 'tambahpendaftaran'])->middleware('checkRole:administrator');
+Route::get('/pendaftaran/dokumen',      [AsosiasiController::class, 'dokumen_view'])->middleware('checkRole:administrator');
 
 // organisasi 
 Route::get('/asosiasi/organisasi',              [AsosiasiController::class, 'view_organisasi'])->middleware('checkRole:administrator');

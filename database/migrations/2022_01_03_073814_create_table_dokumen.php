@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTablePermohonan extends Migration
+class CreateTableDokumen extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,10 @@ class CreateTablePermohonan extends Migration
      */
     public function up()
     {
-        Schema::create('table_permohonan', function (Blueprint $table) {
+        Schema::create('table_dokumen', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_organisasi');
-            $table->string('alamat_organisasi');
-            $table->string('telp_organisasi');
-            $table->string('nomor_permohonan');
-            $table->string('kode_asosiasi');
-            $table->string('bulan');
-            $table->string('tahun');
-            $table->string('nama_kota');
-            $table->string('tanggal_surat');
-            $table->integer('lampiran');
-            $table->string('perihal');
-            $table->string('jabatan_pengurus');
-            $table->string('nama_pengurus');
+            $table->integer('id_permohonan');
+            $table->string('nama');
             $table->string('ktp');
             $table->string('ijazah');
             $table->string('serdkpa');
@@ -52,6 +41,6 @@ class CreateTablePermohonan extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_permohonan');
+        Schema::dropIfExists('table_dokumen');
     }
 }

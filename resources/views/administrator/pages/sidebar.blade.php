@@ -28,14 +28,35 @@
                                     <span class="sub-item">Tambah Permohonan</span>
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="/asosiasi/tambahpendaftaran">
                                     <span class="sub-item">Tambah Pendaftaran</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="/asosiasi/organisasi">
                                     <span class="sub-item">Konfigurasi Organisasi</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#forms">
+                        <i class="fas fa-pen-square"></i>
+                        <p>Pendaftaran</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="forms">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="/pendaftaran/biodata">
+                                    <span class="sub-item">Biodata Peserta</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pendaftaran/dokumen">
+                                    <span class="sub-item">Upload Dokumen</span>
                                 </a>
                             </li>
                         </ul>
@@ -64,7 +85,7 @@
                                     <span class="sub-item">Tidak Lulus</span>
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="../static-sidebar.html">
                                     <span class="sub-item">Static Sidebar</span>
                                 </a>
@@ -73,23 +94,7 @@
                                 <a href="../icon-menu.html">
                                     <span class="sub-item">Icon Menu</span>
                                 </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a data-toggle="collapse" href="#forms">
-                        <i class="fas fa-pen-square"></i>
-                        <p>Forms</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="forms">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="../forms/forms.html">
-                                    <span class="sub-item">Basic Form</span>
-                                </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </li>

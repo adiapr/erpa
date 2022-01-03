@@ -119,9 +119,16 @@ class AsosiasiController extends Controller
     // pendaftaran 
     public function tambahpendaftaran(){
         $no = 1;
-        $dataasosiasi = Asosiasi::orderBy('id', 'desc')->get();
+        $pendaftaran = Permohonan::orderBy('id', 'desc')->get();
 
-        return view('administrator.tambahpendaftaran', compact('no', 'dataasosiasi'));
+        return view('administrator.tambahpendaftaran', compact('no', 'pendaftaran'));
+    }
+
+    public function dokumen_view(){
+        $no = 1;
+        $pendaftaran = Permohonan::orderBy('id', 'desc')->get();
+
+        return view('administrator.uploaddokumen', compact('no', 'pendaftaran'));
     }
 
     // organisasi
