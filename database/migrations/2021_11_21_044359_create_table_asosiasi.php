@@ -15,9 +15,9 @@ class CreateTableAsosiasi extends Migration
     {
         Schema::create('table_asosiasi', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_asosiasi');
-            $table->string('nama');
-            $table->string('domisili');
+            $table->string('kode_asosiasi')->nullable();
+            $table->string('nama')->nullable();
+            $table->string('domisili')->nullable();
             $table->timestamps();
         });
     }

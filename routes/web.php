@@ -30,9 +30,12 @@ Auth::routes();
 //     return view('penjual');
 // })->middleware('checkRole:adminstrator,asosiasi');
 
-
-Route::get('/user',             [UserController::class, 'index'])       ->middleware('checkRole:administrator');
+// Profile
 Route::get('/user/profile',     [UserController::class, 'profile'])      ->middleware('checkRole:administrator');
+Route::post('/user/profile/update/{id}',    [UserController::class, 'update_profile'])->middleware('checkRole:administrator');
+
+// User
+Route::get('/user',             [UserController::class, 'index'])       ->middleware('checkRole:administrator');
 Route::post('user/add',         [UserController::class, 'add'])         ->middleware('checkRole:administrator')->name('user.add');
 Route::post('user/delete/{id}', [UserController::class, 'delete'])     ->middleware('checkRole:administrator')->name('user.delete');
 Route::post('user/update/{id}', [UserController::class, 'update'])      ->middleware('checkRole:administrator')->name('user.update');
@@ -45,11 +48,11 @@ Route::post('/asosiasi/tambahpermohonan/add',    [AsosiasiController::class, 'pe
 Route::post('/asosiasi/tambahpermohonan/update/{id}',   [AsosiasiController::class, 'permohonan_update'])->middleware('checkRole:administrator');
 Route::post('/asosiasi/tambahpermohonan/delete/{id}',   [AsosiasiController::class, 'permohonan_delete'])->middleware('checkRole:administrator');
 
-// Pendaftaran 
+// Pendaftaran
 Route::get('/pendaftaran/biodata',      [AsosiasiController::class, 'tambahpendaftaran'])->middleware('checkRole:administrator');
 Route::get('/pendaftaran/dokumen',      [AsosiasiController::class, 'dokumen_view'])->middleware('checkRole:administrator');
 
-// organisasi 
+// organisasi
 Route::get('/asosiasi/organisasi',              [AsosiasiController::class, 'view_organisasi'])->middleware('checkRole:administrator');
 Route::post('/asosiasi/organiasai/add',          [AsosiasiController::class, 'add_organisasi'])->middleware('checkRole:administrator')->name('organisasi.add');
 Route::post('/asosiasi/organisasi/delete/{id}', [AsosiasiController::class, 'delete_organisasi'])->middleware('checkRole:administrator')->name('asosiasi.organisasi.delete');

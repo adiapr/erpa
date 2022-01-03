@@ -15,12 +15,12 @@ class CreateTableOrganisasi extends Migration
     {
         Schema::create('table_organisasi', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_organisasi');
-            $table->string('alamat');
-            $table->string('logo');
-            $table->string('telp');
-            $table->string('email');
-            $table->string('pengurus');
+            $table->string('nama_organisasi')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('telp')->nullable();
+            $table->string('email')->nullable();
+            $table->string('pengurus')->nullable();
             $table->timestamps();
         });
     }

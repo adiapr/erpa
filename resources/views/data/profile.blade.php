@@ -23,36 +23,37 @@
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                             {{-- profile --}}
 
-                            <form action="">
+                            <form action="/user/profile/update/{{ Auth::user()->id }}" enctype="multipart/form-data" method="post">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group form-group-default">
                                             <label>Nama Lengkap</label>
-                                            <input id="Name" type="text" class="form-control" value="{{ Auth::user()->name }}" placeholder="Fill Name">
+                                            <input id="Name" type="text" name="nama" class="form-control" value="{{ Auth::user()->name }}" placeholder="Fill Name">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group form-group-default">
                                             <label>Email</label>
-                                            <input id="Name" type="text" class="form-control" value="{{ Auth::user()->email }}" readonly placeholder="Fill Name">
+                                            <input id="Name" type="text" name="email" class="form-control" value="{{ Auth::user()->email }}" readonly placeholder="Fill Name">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group form-group-default">
                                             <label>Role</label>
-                                            <input id="Name" type="text" value="{{ Auth::user()->role }}" readonly class="form-control" placeholder="Fill Name">
+                                            <input id="Name" name="role" type="text" value="{{ Auth::user()->role }}" readonly class="form-control" placeholder="Fill Name">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group form-group-default">
                                             <label>Password</label>
-                                            <input id="Name" type="text" required  class="form-control" placeholder="Masukkan ulang">
+                                            <input id="Name" name="password" type="text" required  class="form-control" placeholder="Masukkan ulang">
                                         </div>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group form-group-default">
                                             <label>Pilih Foto</label>
-                                            <input type="file" class="form-control" id="preview_gambar">
+                                            <input type="file" name="foto" class="form-control" id="preview_gambar">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -74,7 +75,7 @@
                 <div class="card-header" style="background-image: url('../assets/img/blogpost.jpg')">
                     <div class="profile-picture">
                         <div class="avatar avatar-xl">
-                            <img src="../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                            <img src="../profil/thumb/{{ Auth::user()->foto }}" alt="..." class="avatar-img rounded-circle">
                         </div>
                     </div>
                 </div>
