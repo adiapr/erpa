@@ -78,7 +78,7 @@ class UserController extends Controller
             $namafile = time().'.'.$foto->getClientOriginalExtension();
 
             Image::make($foto)->resize(400,400)
-            ->save('profil/thumb/'.$namafile);
+            ->save('profil/thumb/'.$namafile); 
 
             $foto->move('profil/'.$namafile);
             $user->foto     = $namafile;

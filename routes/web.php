@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AsosiasiController;
+use App\Http\Controllers\DokumenController;
 use App\Models\Asosiasi;
 
 /*
@@ -58,5 +59,15 @@ Route::post('/asosiasi/organiasai/add',          [AsosiasiController::class, 'ad
 Route::post('/asosiasi/organisasi/delete/{id}', [AsosiasiController::class, 'delete_organisasi'])->middleware('checkRole:administrator')->name('asosiasi.organisasi.delete');
 Route::post('/asosiasi/organisasi/update/{id}', [AsosiasiController::class, 'update_organisasi'])->middleware('checkRole:administrator')->name('asosiasi.organisasi.update');
 Route::post('/asosiasi/organisasi/autocomplete', [AsosiasiController::class, 'dataorganisasi'])->name('asosiasi.organisasi.autocomplete');
+
+// upload dokumen 
+Route::post('/document/ktp/{id}',    [DokumenController::class, 'upload_ktp']);
+Route::get('/delete/ktp/{id}',      [DokumenController::class, 'delete_ktp']);
+Route::get('/download/ktp/{id}',    [DokumenController::class, 'download_ktp']);
+
+Route::post('/document/ijazah/{id}',    [DokumenController::class, 'upload_ijazah']);
+Route::get('/delete/ijazah/{id}',      [DokumenController::class, 'delete_ijazah']);
+Route::get('/download/ijazah/{id}',    [DokumenController::class, 'download_ijazah']);
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

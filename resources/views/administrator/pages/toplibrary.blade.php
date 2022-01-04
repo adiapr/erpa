@@ -25,3 +25,4 @@
 	<link rel="stylesheet" href="../../assets/css/atlantis.min.css">
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="../../assets/css/demo.css">
+	{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
