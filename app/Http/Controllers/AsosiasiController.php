@@ -8,6 +8,7 @@ use App\Models\Permohonan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 
 class AsosiasiController extends Controller
 {
@@ -116,7 +117,7 @@ class AsosiasiController extends Controller
         return redirect('/asosiasi/tambahpermohonan');
     }
 
-    // pendaftaran 
+    // pendaftaran
     public function tambahpendaftaran(){
         $no = 1;
         $pendaftaran = Permohonan::orderBy('id', 'desc')->get();
@@ -125,10 +126,13 @@ class AsosiasiController extends Controller
     }
 
     public function dokumen_view(){
-        $no = 1;
-        $pendaftaran = Permohonan::orderBy('id', 'desc')->get();
+        Paginator::useBootstrap();
+        $batas = 2;
+        $total = Permohonan::count();
+        $pendaftaran = Permohonan::orderBy('id', 'desc')->paginate($batas);
+        $no = $batas*($pendaftaran->currentPage()-1);
 
-        return view('administrator.uploaddokumen', compact('no', 'pendaftaran'));
+        return view('administrator.uploaddokumen', compact('no', 'pendaftaran', 'total'));
     }
 
     // organisasi

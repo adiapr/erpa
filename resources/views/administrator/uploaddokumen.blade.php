@@ -52,12 +52,12 @@
                         <tbody>
                             @foreach ($pendaftaran as $data)
                             <tr>
-                                <td>{{ $no++ }}</td>
+                                <td>{{ ++$no }}</td>
                                 <td>{{ $data->nama_pengurus }}</td>
                                 {{-- ktp  --}}
                                 <td>
                                     @if ($data->ktp == '')
-                                    <button data-toggle="modal" data-target="#ktp{{ $data->id }}" class="btn btn-danger btn-sm p-1 mb-1"> <i class="fa fa-upload"></i> Belum Diunggah</button>   
+                                    <button data-toggle="modal" data-target="#ktp{{ $data->id }}" class="btn btn-danger btn-sm p-1 mb-1"> <i class="fa fa-upload"></i> Belum Diunggah</button>
                                     @else
                                     <div style="width:150px;">
                                         <a href="/download/ktp/{{ $data->id }}" style="color:white" class="btn btn-success btn-sm p-1 mb-1"> <i class="fa fa-download"></i> Berhasil</a>
@@ -94,7 +94,7 @@
                                 {{-- ijazah  --}}
                                 <td>
                                     @if ($data->ijazah == '')
-                                    <button data-toggle="modal" data-target="#ijazah{{ $data->id }}" class="btn btn-danger btn-sm p-1 mb-1"> <i class="fa fa-upload"></i> Belum Diunggah</button>   
+                                    <button data-toggle="modal" data-target="#ijazah{{ $data->id }}" class="btn btn-danger btn-sm p-1 mb-1"> <i class="fa fa-upload"></i> Belum Diunggah</button>
                                     @else
                                     <div style="width:150px;">
                                         <a href="/download/ijazah/{{ $data->id }}" style="color:white" class="btn btn-success btn-sm p-1 mb-1"> <i class="fa fa-download"></i> Berhasil</a>
@@ -136,6 +136,17 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        Jumlah Data : {{ $total }}
+                    </div>
+                    <div class="col-md-12">
+                        {{ $pendaftaran->links() }}
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
