@@ -12,6 +12,10 @@ use Illuminate\Pagination\Paginator;
 
 class AsosiasiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //index
     public function index(){
         $no = 1;
@@ -176,4 +180,6 @@ class AsosiasiController extends Controller
         toast('Data berhasil diperbaharui');
         return redirect('asosiasi/organisasi');
     }
+
+    
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AsosiasiController;
 use App\Http\Controllers\DokumenController;
+use App\Http\Controllers\VerifikatorController;
 use App\Models\Asosiasi;
 
 /*
@@ -17,15 +18,12 @@ use App\Models\Asosiasi;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
-
-// Route::get('admin',function(){
-//     return view('administrator.datatables');
-// })->middleware('checkRole:adminstrator');
+Route::get('/', function () {
+    return view('auth.login');
+});
 
 // Route::get('penjual',function(){
 //     return view('penjual');
@@ -113,4 +111,9 @@ Route::post('/document/status/{id}',    [DokumenController::class, 'upload_statu
 Route::get('/delete/status/{id}',      [DokumenController::class, 'delete_status']);
 Route::get('/download/status/{id}',    [DokumenController::class, 'download_status']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('checkRole:administrator');
+
+// Verifikasi
+Route::get('/verifikasi',               [VerifikatorController::class, 'verifikasi_index']);
+Route::get('/verifikasi/diterima/{id}', [VerifikatorController::class, 'verifikasi_diterima']);
+Route::post('verifikasi/ditolak/{id}',  [VerifikatorController::class, 'verifikasi_ditolak']);

@@ -3,6 +3,7 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-primary">
+                {{-- all --}}
                 <li class="nav-item active">
                     <a  href="/home" class="collapsed" aria-expanded="false">
                         <i class="fas fa-home"></i>
@@ -15,6 +16,7 @@
                     </span>
                     <h4 class="text-section">Components</h4>
                 </li>
+                {{-- asosiasi  --}}
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#base">
                         <i class="fas fa-layer-group"></i>
@@ -62,6 +64,13 @@
                         </ul>
                     </div>
                 </li>
+                {{-- varifikator --}}
+                <li class="nav-item">
+                    <a href="/verifikasi">
+                        <i class="fas fa-book"></i>
+                        <p>Verifikasi Peserta</p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#sidebarLayouts">
                         <i class="fas fa-th-list"></i>
@@ -85,43 +94,11 @@
                                     <span class="sub-item">Tidak Lulus</span>
                                 </a>
                             </li>
-                            {{-- <li>
-                                <a href="../static-sidebar.html">
-                                    <span class="sub-item">Static Sidebar</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../icon-menu.html">
-                                    <span class="sub-item">Icon Menu</span>
-                                </a>
-                            </li> --}}
                         </ul>
                     </div>
                 </li>
-                {{-- <li class="nav-item active submenu"> --}}
-                <li class="nav-item">
-                    <a data-toggle="collapse" href="#tables">
-                        <i class="fas fa-table"></i>
-                        <p>Tables</p>
-                        <span class="caret"></span>
-                    </a>
-                    {{-- <div class="collapse show" id="tables"> --}}
-                    <div class="collapse" id="tables">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="../tables/tables.html">
-                                    <span class="sub-item">Basic Table</span>
-                                </a>
-                            </li>
-                            {{-- <li class="active"> --}}
-                            <li>
-                                <a href="../tables/datatables.html">
-                                    <span class="sub-item">Datatables</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+
+                
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#maps">
                         <i class="fas fa-map-marker-alt"></i>
