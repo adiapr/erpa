@@ -80,17 +80,17 @@
                     <div class="collapse" id="sidebarLayouts">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="../sidebar-style-1.html">
+                                <a href="/verifikasi/b_terverifikasi">
                                     <span class="sub-item">Belum Terverifikasi</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="../overlay-sidebar.html">
+                                <a href="/verifikasi/terverifikasi">
                                     <span class="sub-item">Verifikasi</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="../compact-sidebar.html">
+                                <a href="/verifikasi/t_terverifikasi">
                                     <span class="sub-item">Tidak Lulus</span>
                                 </a>
                             </li>

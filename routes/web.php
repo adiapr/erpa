@@ -117,3 +117,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/verifikasi',               [VerifikatorController::class, 'verifikasi_index']);
 Route::get('/verifikasi/diterima/{id}', [VerifikatorController::class, 'verifikasi_diterima']);
 Route::post('verifikasi/ditolak/{id}',  [VerifikatorController::class, 'verifikasi_ditolak']);
+Route::get('/verifikasi/b_terverifikasi',      [VerifikatorController::class, 'b_terverifikasi']);
+Route::get('/verifikasi/terverifikasi',      [VerifikatorController::class, 'terverifikasi']);
+Route::get('/verifikasi/t_terverifikasi',      [VerifikatorController::class, 't_terverifikasi']);

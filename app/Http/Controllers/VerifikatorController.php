@@ -38,4 +38,28 @@ class VerifikatorController extends Controller
         toast('User ditolak', 'success');
         return redirect('/verifikasi');
     }
+
+    public function b_terverifikasi(){
+        $no = 1;
+        $pendaftaran = Permohonan::where('verifikasi',null)
+                ->orderBy('id', 'desc')->get();
+
+        return view('verifikator.b_terverifikasi', compact('no', 'pendaftaran'));
+    }
+
+    public function terverifikasi(){
+        $no = 1;
+        $pendaftaran = Permohonan::where('verifikasi','diterima')
+                ->orderBy('id', 'desc')->get();
+
+        return view('verifikator.terverifikasi', compact('no', 'pendaftaran'));
+    }
+
+    public function t_terverifikasi(){
+        $no = 1;
+        $pendaftaran = Permohonan::where('verifikasi','ditolak')
+                ->orderBy('id', 'desc')->get();
+
+        return view('verifikator.t_terverifikasi', compact('no', 'pendaftaran'));
+    }
 }
