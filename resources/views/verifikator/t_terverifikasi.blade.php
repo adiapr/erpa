@@ -1,7 +1,7 @@
 @extends('administrator.pages.layouts')
 
 @section('title')
-    Biodata Peserta
+    Peserta Gagal
 @endsection
 
 @section('menu')
